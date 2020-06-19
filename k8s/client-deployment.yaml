@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: web # aqui tambem pode usar app: web, é livre
+  template:
+    metadata:
+      labels:
+        component: web # aqui tambem pode usar app: web, é livre, tem que casar com o de cima
+    spec:
+      containers:
+        - name: client # aqui pode ser qualqur nome
+          image: stephengrider/multi-client
+          ports:
+            - containerPort: 3000
